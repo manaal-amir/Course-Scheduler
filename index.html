@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>University Course Scheduler</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1>University Course Scheduler</h1>
+    
+    <!-- Input Section -->
+    <div class="input-section">
+      <h2>Add Your Courses</h2>
+      <div id="courses-container">
+        <!-- Courses will appear here -->
+      </div>
+      <button id="add-course-btn">➕ Add Course</button>
+    </div>
+
+    <!-- Generate Button -->
+    <button id="generate-btn">Generate Optimal Schedule</button>
+
+    <!-- Results Section (Hidden Initially) -->
+    <div id="schedule-results" style="display: none;">
+      <h2>Your Conflict-Free Schedule</h2>
+      <div id="calendar"></div>
+      <div id="warnings"></div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+<div class="info-box">
+  <h3>How to Use</h3>
+  <ol>
+    <li>Add courses with all possible time slots</li>
+    <li>The system will find conflict-free schedules</li>
+    <li>Generate your optimal timetable</li>
+  </ol>
+</div>
+</html>
