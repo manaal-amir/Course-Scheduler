@@ -1,17 +1,17 @@
-// Track all courses
+
 let courses = [];
 
-// Initialize - Add first course on load
+
 document.addEventListener('DOMContentLoaded', () => {
   addNewCourse();
 });
 
-// Add a new course input field
+
 document.getElementById('add-course-btn').addEventListener('click', addNewCourse);
 
 function addNewCourse() {
   const container = document.getElementById('courses-container');
-  const courseId = Date.now(); // Unique ID
+  const courseId = Date.now(); 
 
   const courseDiv = document.createElement('div');
   courseDiv.className = 'course';
@@ -25,11 +25,11 @@ function addNewCourse() {
   `;
   container.appendChild(courseDiv);
 
-  // Add first time slot by default
+ 
   addTimeSlot(courseId);
 }
 
-// Add time slot to a course
+
 function addTimeSlot(courseId) {
   const slotsDiv = document.getElementById(`slots-${courseId}`);
   const slotDiv = document.createElement('div');
@@ -50,29 +50,28 @@ function addTimeSlot(courseId) {
   slotsDiv.appendChild(slotDiv);
 }
 
-// Handle button clicks dynamically
+
 document.addEventListener('click', (e) => {
-  // Add time slot
+  //Add time slot
   if (e.target.classList.contains('add-slot-btn')) {
     const courseId = e.target.getAttribute('data-id');
     addTimeSlot(courseId);
   }
-  // Remove time slot
+  //Remove time slot
   if (e.target.classList.contains('remove-slot-btn')) {
     e.target.closest('.time-slot').remove();
   }
-  // Remove entire course
+  //Remove entire course
   if (e.target.classList.contains('remove-btn') && !e.target.classList.contains('remove-slot-btn')) {
     e.target.closest('.course').remove();
   }
 });
 
-// Generate the optimal schedule
+//Generate the optimal schedule
 document.getElementById('generate-btn').addEventListener('click', () => {
   courses = [];
   const courseElements = document.querySelectorAll('.course');
 
-  // Extract data from form
   courseElements.forEach(courseEl => {
     const name = courseEl.querySelector('.course-name').value.trim();
     const slots = Array.from(courseEl.querySelectorAll('.time-slot')).map(slot => ({
@@ -86,7 +85,7 @@ document.getElementById('generate-btn').addEventListener('click', () => {
     }
   });
 
-  // Generate schedule
+  //Generate schedule
   const assignedSlots = [];
   const schedule = {};
   const warnings = [];
@@ -112,7 +111,7 @@ document.getElementById('generate-btn').addEventListener('click', () => {
     }
   }
 
-  // Display results
+  //Display results
   const calendar = document.getElementById('calendar');
   calendar.innerHTML = '';
 
@@ -123,10 +122,9 @@ document.getElementById('generate-btn').addEventListener('click', () => {
     calendar.appendChild(div);
   }
 
-  // Show warnings
+  //Show warnings
   const warningsDiv = document.getElementById('warnings');
   warningsDiv.innerHTML = warnings.join('<br>');
 
-  // Show results section
   document.getElementById('schedule-results').style.display = 'block';
 });
